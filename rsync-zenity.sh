@@ -75,7 +75,7 @@ fi
 
 zenity --text-info --title="Sync review ($num_files changes)" --filename=$log_file --width=500 --height=500 || exit 4
 
-num_deleted=`fgrep delet $log_file | wc -l`
+num_deleted=$(grep '^\*deleting ' $log_file | wc -l)
 if [ $num_deleted -ge 100 ]; then
   zenity --question --title="Sync" --text="$num_deleted files are going to be deleted from $dest, do you still want to continue?" --ok-label="Continue" || exit 4
 fi
